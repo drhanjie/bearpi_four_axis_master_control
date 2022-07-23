@@ -17,9 +17,10 @@
 
 
 void set_ce_value(unsigned char value);
-unsigned char get_IrQ_value();
 
-unsigned int nrf_24l01_spi_init();
+unsigned char get_IrQ_value(void);
+
+unsigned int nrf_24l01_spi_init(void);
 
 typedef  struct nrf_24l01_spi_type
 {

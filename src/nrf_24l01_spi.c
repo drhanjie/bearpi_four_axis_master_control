@@ -1,7 +1,7 @@
 #include "nrf_24l01_spi.h"
 
 #include "wifiiot_spi.h"
-#include "hal_wifiiot_spi.h"
+//#include "hal_wifiiot_spi.h"
 
 #include "wifiiot_gpio.h"
 #include "wifiiot_gpio_ex.h"
@@ -13,15 +13,19 @@ typedef unsigned short uint16_t;
 
 void set_ce_value(unsigned char value)
 {
-     GpioSetOutputVal(WIFI_IOT_GPIO_IDX_9,value);
+     if(value)
+     GpioSetOutputVal(WIFI_IOT_GPIO_IDX_9,WIFI_IOT_GPIO_VALUE1);
+     else 
+     GpioSetOutputVal(WIFI_IOT_GPIO_IDX_9,WIFI_IOT_GPIO_VALUE0);
+
 }
-unsigned char get_IrQ_value()
+unsigned char get_IrQ_value(void)
 {
-    unsigned char value ;
+    WifiIotGpioValue  value;
     GpioGetInputVal(WIFI_IOT_GPIO_IDX_10,&value);
-    return value;
+    return value == WIFI_IOT_GPIO_VALUE1 ? 1 : 0;
 }
-void nrf_24l01_gpio_init()
+void nrf_24l01_gpio_init(void)
 {
  GpioInit();
  //GPIO_CE  
@@ -39,7 +43,7 @@ void nrf_24l01_gpio_init()
  hi_io_set_driver_strength(HI_IO_NAME_GPIO_8, HI_IO_DRIVER_STRENGTH_0);
 }
 
-unsigned int nrf_24l01_spi_init()
+unsigned int nrf_24l01_spi_init(void)
 {
 
  unsigned int ret;

@@ -21,7 +21,7 @@ void init_jy901b(void)
     //baudrate: 400kbps
     I2cInit(WIFI_IOT_I2C_IDX_1, 400000);
     I2cSetBaudrate(WIFI_IOT_I2C_IDX_1, 400000);
-    printf("jy901  start \n");
+    //printf("jy901  start \n");
 }
 
 static short CharToShort(unsigned char cData[])
@@ -36,7 +36,7 @@ unsigned char  jy901b_read_data(unsigned char address,struct JY901B_type * j901b
 
     if(j901b_t)
     { 
-         printf("j901b_t type is NULL \n");
+         //printf("j901b_t type is NULL \n");
          return -1;
     }
     nt3h1101_i2c_data.sendBuf = buffer;
@@ -46,7 +46,7 @@ unsigned char  jy901b_read_data(unsigned char address,struct JY901B_type * j901b
     status = I2cWriteread(WIFI_IOT_I2C_IDX_1, (JY901B_ADDR_SLAVE<<1)|0x00, &nt3h1101_i2c_data);
     if (status != 0)
     {
-        printf("===== Error: I2C write status = 0x%x! =====\r\n", status);
+        //printf("===== Error: I2C write status = 0x%x! =====\r\n", status);
         return 0;
     }
     j901b_t->a[0] = (float)CharToShort(j901b_t->chrTemp+0)/32768*16;

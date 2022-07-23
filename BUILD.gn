@@ -1,8 +1,16 @@
+#licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
 static_library("four_axis") {
     sources = [
-        "nrf_24l01_spi.c"
-        "pwm_contronl.c"
-        "JY901B.c"
+        "src/nrf_24l01_spi.c",
+        "src/pwm_contronl.c",
+        "src/JY901B.c",
     ]
     
     cflags = [ "-Wno-unused-variable" ]
@@ -12,7 +20,7 @@ static_library("four_axis") {
         "//utils/native/lite/include",
         "//kernel/liteos_m/components/cmsis/2.0",
         "//base/iot_hardware/interfaces/kits/wifiiot_lite",
-        "//vendor/hisi/hi3861/hi3861/include"
-        "include"
+        "//vendor/hisi/hi3861/hi3861/include",
+        "include",
     ]
 }
